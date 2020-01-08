@@ -21,7 +21,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="470dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
         app:cardCornerRadius="15dp"
@@ -29,8 +29,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="470dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="10dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,7 +42,7 @@
                 android:gravity="center_horizontal"
                 android:text="Create Account"
                 android:textColor="#000000"
-                android:textSize="23dp" />
+                android:textSize="22dp" />
 
             <EditText
                 android:id="@+id/edt_firstname"
@@ -51,6 +52,7 @@
                 android:layout_marginVertical="5dp"
                 android:background="@drawable/edit_rectangle"
                 android:hint="First name"
+                android:textSize="16dp"
                 android:padding="10dp" />
 
             <EditText
@@ -61,6 +63,7 @@
                 android:layout_marginVertical="5dp"
                 android:background="@drawable/edit_rectangle"
                 android:hint="Last name"
+                android:textSize="16dp"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -68,38 +71,47 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="5dp">
+                android:layout_marginVertical="5dp"
+                android:weightSum="3">
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="7dp"
                     android:text="Birthday"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/edt_day"
-                    android:layout_width="77dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_rectangle"
                     android:hint="Date"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:textSize="16dp"/>
 
                 <EditText
                     android:id="@+id/edt_month"
-                    android:layout_width="86dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_rectangle"
                     android:hint="Month"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:textSize="16dp"/>
 
                 <EditText
                     android:id="@+id/edt_year"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_rectangle"
                     android:hint="Year"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:textSize="16dp"/>
             </LinearLayout>
 
             <EditText
@@ -109,8 +121,9 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="5dp"
                 android:background="@drawable/edit_rectangle"
-                android:hint="Phonenumber"
-                android:padding="10dp" />
+                android:hint="Phone number"
+                android:padding="10dp"
+                android:textSize="16dp"/>
 
             <EditText
                 android:id="@+id/edt_email"
@@ -119,8 +132,9 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="5dp"
                 android:background="@drawable/edit_rectangle"
-                android:hint="Email name"
-                android:padding="10dp" />
+                android:hint="Email"
+                android:padding="10dp"
+                android:textSize="16dp"/>
 
             <EditText
                 android:id="@+id/edt_password"
@@ -131,34 +145,39 @@
                 android:background="@drawable/edit_rectangle"
                 android:hint="Password"
                 android:padding="10dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textSize="16dp"/>
 
             <EditText
                 android:id="@+id/edt_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_rectangle"
                 android:hint="Confirm password"
                 android:padding="10dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textSize="16dp"/>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="180dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_cancel_round"
             android:text="Cancel"
@@ -166,13 +185,13 @@
             android:fontFamily="sans-serif-medium"
             android:textStyle="bold"
             android:textSize="16dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"/>
 
         <Button
             android:id="@+id/btn_register"
             android:elevation="10dp"
-            android:layout_width="180dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Register now"
             android:textColor="#FFFFFF"
@@ -180,8 +199,8 @@
             android:textStyle="bold"
             android:textSize="16dp"
             android:background="@drawable/btn_register_round"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="100dp"
         android:layout_marginHorizontal="20dp"
-        >
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,7 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:id="@+id/txt_forgot"
@@ -109,8 +110,7 @@
                     android:layout_marginLeft="3dp"
                     android:textSize="17dp"
                     android:textColor="#F9773B"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="20dp"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
