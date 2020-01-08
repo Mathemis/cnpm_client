@@ -1,10 +1,10 @@
 package com.example.cnpm;
 
-public class InfoLogin {
+public class User {
     private  String mail;
     private  String pass;
 
-    public InfoLogin(String mail, String pass) {
+    public User(String mail, String pass) {
         this.mail = mail;
         this.pass = pass;
     }

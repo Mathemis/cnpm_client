@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cnpm.model.APIClient;
@@ -18,16 +19,46 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class HomeActivity extends AppCompatActivity {
-
+    Button btnLogout,btnProfile;
+    Intent getIntent = getIntent();
+    String accesstoken, name;
+    TextView txtName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Button btnLogout = (Button) findViewById(R.id.btn_logout);
+        txtName = (TextView)findViewById(R.id.txt_setName);
+        btnLogout = (Button) findViewById(R.id.btn_logout);
+        btnProfile = (Button) findViewById(R.id.btn_profile);
+        final Intent getIntent = getIntent();
+        accesstoken = getIntent.getStringExtra("accesstoken");
+        name = getIntent.getStringExtra("username");
+        txtName.setText(name);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout();
+            }
+        });
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mail,pass,birthday,createat,phoneNumber;
+                mail = getIntent.getStringExtra("mail");
+                pass = getIntent.getStringExtra("pass");
+                birthday = getIntent.getStringExtra("birthday");
+                createat = getIntent.getStringExtra("createat");
+                phoneNumber = getIntent.getStringExtra("phoneNumber");
+                Intent intent = new Intent(HomeActivity.this,ProfileActivity.class);
+                intent.putExtra("accesstoken",accesstoken);
+                intent.putExtra("username",name);
+                intent.putExtra("mail",mail);
+                intent.putExtra("pass",pass);
+                intent.putExtra("birthday",birthday);
+                intent.putExtra("createat",createat);
+                intent.putExtra("phoneNumber",phoneNumber);
+                startActivity(intent);
+                HomeActivity.this.finish();
             }
         });
     }
@@ -58,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResultLogout> call, Throwable t) {
-                        Toast.makeText(HomeActivity.this, "Can not connect to server", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

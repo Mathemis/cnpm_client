@@ -60,48 +60,48 @@ public class RegisterActivity extends AppCompatActivity {
         phone = editPhonenumber.getText().toString().trim();
         confirm = editConfirm.getText().toString().trim();
         int day,month,year;
-        day= Integer.parseInt(editDay.getText().toString().trim());
-        month= Integer.parseInt(editMonth.getText().toString().trim());
-        year= Integer.parseInt(editYear.getText().toString().trim());
-        if ((lastName.isEmpty() || firstName.isEmpty() || mail.isEmpty() || pass.isEmpty()|| confirm.isEmpty()|| phone.isEmpty())){
+
+        if ((lastName.isEmpty() || firstName.isEmpty() || mail.isEmpty() || pass.isEmpty()|| confirm.isEmpty()|| phone.isEmpty()||editDay.getText().toString().trim().isEmpty()||editMonth.getText().toString().trim().isEmpty()||editYear.getText().toString().trim().isEmpty())){
             Toast.makeText(RegisterActivity.this, "Please enter enough information", Toast.LENGTH_SHORT).show();
-        }
-        else if (day<=0||month<=0||year<=0 || day>31 || month>12) {
-            Toast.makeText(this, "Error birthday", Toast.LENGTH_SHORT).show();
         }
         else if (!pass.equals(confirm)){
             Toast.makeText(RegisterActivity.this, "Confirm Password is wrong", Toast.LENGTH_SHORT).show();
         }
         else {
-            Retrofit retrofit = APIClient.getClient();
-            HerokuService requestApi = retrofit.create(HerokuService.class);
-            String birthday = String.valueOf(year)+"/"+String.valueOf(month)+"/"+String.valueOf(day);
-            Register register = new Register(mail,pass,firstName+" "+lastName,birthday,phone,firstName,lastName,false,"",false);
-            Call<ResultLogout> call = requestApi.signup(register);
-            call.enqueue(new Callback<ResultLogout>() {
-                @Override
-                public void onResponse(Call<ResultLogout> call, Response<ResultLogout> response) {
-                    try {
-                        ResultLogout result = response.body();
-                        if (result.getMessage().equals("created")){
-                            Toast.makeText(RegisterActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                            RegisterActivity.this.finish();
-                        }
-                        else{
-                            Toast.makeText(RegisterActivity.this, "email is used by another user", Toast.LENGTH_SHORT).show();
+            day = Integer.parseInt(editDay.getText().toString().trim());
+            month = Integer.parseInt(editMonth.getText().toString().trim());
+            year = Integer.parseInt(editYear.getText().toString().trim());
+            if (day <= 0 || month <= 0 || year <= 0 || day > 31 || month > 12) {
+                Toast.makeText(this, "Error birthday", Toast.LENGTH_SHORT).show();
+            } else {
+                Retrofit retrofit = APIClient.getClient();
+                HerokuService requestApi = retrofit.create(HerokuService.class);
+                String birthday = String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(day);
+                Register register = new Register(mail, pass, firstName + " " + lastName, birthday, phone, firstName, lastName, false, "", false);
+                Call<ResultLogout> call = requestApi.signup(register);
+                call.enqueue(new Callback<ResultLogout>() {
+                    @Override
+                    public void onResponse(Call<ResultLogout> call, Response<ResultLogout> response) {
+                        try {
+                            ResultLogout result = response.body();
+                            if (result.getMessage().equals("created")) {
+                                Toast.makeText(RegisterActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                RegisterActivity.this.finish();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "email is used by another user", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(RegisterActivity.this, "something were wrong", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    catch (Exception e){
-                        Toast.makeText(RegisterActivity.this, "something were wrong", Toast.LENGTH_SHORT).show();
-                    }
-                }
 
-                @Override
-                public void onFailure(Call<ResultLogout> call, Throwable t) {
-                    Toast.makeText(RegisterActivity.this, "Can not connect to server", Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<ResultLogout> call, Throwable t) {
+                        Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
     }
 }

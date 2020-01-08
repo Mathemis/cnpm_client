@@ -9,7 +9,7 @@ public class ResultLogout {
     private String message;
     @SerializedName("body")
     @Expose
-    private String body;
+    private Body body;
 
     public String getMessage() {
         return message;
@@ -19,11 +19,12 @@ public class ResultLogout {
         this.message = message;
     }
 
-    public String getBody() {
+
+    public Body getBody() {
         return body;
     }
 
-    public void setBody(String body) {
+    public void setBody(Body body) {
         this.body = body;
     }
 }

@@ -130,7 +130,8 @@
                 android:layout_marginVertical="5dp"
                 android:background="@drawable/edit_rectangle"
                 android:hint="Password"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:inputType="textPassword"/>
 
             <EditText
                 android:id="@+id/edt_confirm"
@@ -141,7 +142,8 @@
                 android:layout_marginBottom="7dp"
                 android:background="@drawable/edit_rectangle"
                 android:hint="Confirm password"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:inputType="textPassword"/>
 
         </LinearLayout>
 

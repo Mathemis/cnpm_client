@@ -2,30 +2,67 @@ package com.example.cnpm.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 public class Body {
-    @SerializedName("tokens")
+    @SerializedName("access-tokens")
     @Expose
-    private Tokens tokens;
-    @SerializedName("user")
+    private String tokens;
+    @SerializedName("username")
     @Expose
-    private User user;
-    public Body(Tokens tokens, User user) {
+    private String username;
+    @SerializedName("birthday")
+    @Expose
+    private String birthday;
+    @SerializedName("createat")
+    @Expose
+    private String createat;
+    @SerializedName("phoneNumber")
+    @Expose
+    private String phoneNumber;
+
+    public Body(String tokens, String username, String birthday, String createat, String phoneNumber) {
         this.tokens = tokens;
-        this.user = user;
+        this.username = username;
+        this.birthday = birthday;
+        this.createat = createat;
+        this.phoneNumber = phoneNumber;
     }
 
-    public Tokens getTokens() {
+    public String getTokens() {
         return tokens;
     }
 
-    public void setTokens(Tokens tokens) {
+    public void setTokens(String tokens) {
         this.tokens = tokens;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getCreateat() {
+        return createat;
+    }
+
+    public void setCreateat(String createat) {
+        this.createat = createat;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

@@ -49,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
     private void Login(){
         String mail = editEmail.getText().toString().trim();
         String pass = editPass.getText().toString().trim();
-        InfoLogin infoLogin =new InfoLogin(mail,pass);
+        final User user =new User(mail,pass);
         if (mail.isEmpty() && pass.isEmpty()) {
             Toast.makeText(MainActivity.this, "Please enter enough information", Toast.LENGTH_SHORT).show();
         }
         else {
             Retrofit retrofit = APIClient.getClient();
             HerokuService requestApi = retrofit.create(HerokuService.class);
-            Call<ResultLogin> call = requestApi.login(infoLogin);
+            Call<ResultLogin> call = requestApi.login(user);
             call.enqueue(new Callback<ResultLogin>() {
                 @Override
                 public void onResponse(Call<ResultLogin> call, Response<ResultLogin> response) {
@@ -65,18 +65,15 @@ public class MainActivity extends AppCompatActivity {
                         if (result.getMessage().equals("OK")){
                             Toast.makeText(MainActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-                            intent.putExtra("accesstoken",result.getBody().getTokens().getAccesstoken());
-                            /*intent.putExtra("mail",result.getUser().getMail());
-                            intent.putExtra("username",result.getUser().getUsername());
-                            intent.putExtra("birthday",result.getUser().getBirthday());
-                            intent.putExtra("phoneNumber",result.getUser().getPhoneNumber());
-                            intent.putExtra("firstname",result.getUser().getFirstname());
-                            intent.putExtra("lastname",result.getUser().getLastname());*/
+                            intent.putExtra("accesstoken",result.getBody().getTokens());
+                            intent.putExtra("username",result.getBody().getUsername());
+                            intent.putExtra("mail",user.getMail());
+                            intent.putExtra("pass",user.getPass());
+                            intent.putExtra("birthday",result.getBody().getBirthday());
+                            intent.putExtra("createat",result.getBody().getCreateat());
+                            intent.putExtra("phoneNumber",result.getBody().getPhoneNumber());
                             startActivity(intent);
                             MainActivity.this.finish();
-                        }
-                        else if (result.getMessage().equals("account is logging in another place")){
-                            Toast.makeText(MainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(MainActivity.this, "Mail or Passwork is wrong", Toast.LENGTH_SHORT).show();

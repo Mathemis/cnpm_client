@@ -5,11 +5,10 @@ import com.example.cnpm.model.ResultLogout;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface HerokuService {
     @GET("api/v1/logout")
@@ -17,5 +16,7 @@ public interface HerokuService {
     @POST("api/v1/signup")
     Call<ResultLogout> signup(@Body Register register);
     @POST("api/v1/login")
-    Call<ResultLogin> login(@Body InfoLogin user);
+    Call<ResultLogin> login(@Body User user);
+    @PUT("api/v1/account")
+    Call<ResultLogout> update(@Header("Access-Token") String accesstoken,@Body Register register);
 }
